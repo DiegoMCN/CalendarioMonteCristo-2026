@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario MonteCristo 2026 · ¡Vive tu Ascenso!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --summit:#0E2A31;      /* deep pine-teal night */
+  --slate:#173C46;       /* slate pine */
+  --mist:#F3F6F5;        /* cool misty paper */
+  --card:#FFFFFF;
+  --ink:#12262B;
+  --ink-soft:#4A6169;
+  --line:#D9E4E2;
+  --dawn:#E0A340;        /* sunrise gold accent */
+  --dawn-deep:#C6852A;
+  /* dimension colors */
+  --d-humana:#D9713C;
+  --d-espiritual:#7A5AA8;
+  --d-pastoral:#0E8A8A;
+  --d-economia:#2E8B57;
+  --d-todos:#2C5C8A;
+  --d-decanatal:#6B7B86;
+  --d-cumple:#C25B87;
+  --d-parroquial:#B08432;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--mist);color:var(--ink);
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ---------- HEADER ---------- */
+header{
+  background:
+    radial-gradient(120% 90% at 80% -10%, rgba(224,163,64,.22), transparent 55%),
+    linear-gradient(160deg,var(--summit),var(--slate));
+  color:#EAF2F0;padding:40px 0 0;position:relative;overflow:hidden;
+}
+.brand{display:flex;align-items:center;gap:16px;position:relative;z-index:2}
+.mark{width:52px;height:52px;flex:none}
+.brand-txt .eyebrow{
+  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--dawn);font-weight:600
+}
+.brand-txt h1{
+  font-family:'Spectral',serif;font-weight:600;font-size:1.9rem;
+  letter-spacing:.01em;line-height:1.1;color:#fff
+}
+.brand-txt .sub{font-size:.86rem;color:#B7CBC8;margin-top:2px}
+
+.next-banner{
+  margin-top:28px;display:flex;flex-wrap:wrap;align-items:flex-end;
+  gap:8px 28px;padding:18px 0 26px;border-top:1px solid rgba(255,255,255,.12);
+  position:relative;z-index:2
+}
+.next-banner .label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#9FBAB6}
+.next-title{font-family:'Spectral',serif;font-size:1.35rem;color:#fff;font-weight:500}
+.next-meta{font-size:.85rem;color:#C9DAD7}
+.countdown{margin-left:auto;text-align:right}
+.countdown .num{font-family:'Spectral',serif;font-size:2.1rem;color:var(--dawn);line-height:1;font-weight:600}
+.countdown .cap{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#9FBAB6}
+
+/* mountain silhouette */
+.range{position:absolute;left:0;right:0;bottom:0;height:70px;z-index:1;opacity:.5}
+
+/* ---------- UPCOMING ---------- */
+.upcoming{padding:26px 0 6px}
+.section-h{
+  font-family:'Spectral',serif;font-size:1.15rem;font-weight:600;
+  display:flex;align-items:center;gap:10px;margin-bottom:14px
+}
+.section-h::before{content:"";width:22px;height:2px;background:var(--dawn);display:inline-block}
+.up-scroll{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.up-card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:14px 15px 13px;position:relative;overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .15s ease,box-shadow .15s ease
+}
+.up-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px -12px rgba(14,42,49,.35)}
+.up-card .accent{position:absolute;top:0;left:0;width:4px;height:100%}
+.up-when{font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase}
+.up-name{font-family:'Spectral',serif;font-size:1.02rem;font-weight:600;margin:6px 0 6px;line-height:1.25}
+.up-detail{font-size:.8rem;color:var(--ink-soft);line-height:1.4;margin-bottom:11px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.up-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.up-dim{font-size:.66rem;font-weight:700;color:#fff;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+.up-in{font-size:.74rem;color:var(--dawn-deep);font-weight:700;white-space:nowrap}
+
+/* ---------- CONTROLS ---------- */
+.controls{position:sticky;top:0;z-index:20;
+  background:rgba(243,246,245,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:14px 0 12px;border-bottom:1px solid var(--line)}
+.searchrow{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+.search{
+  flex:1;min-width:0;display:flex;align-items:center;gap:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 13px;
+  transition:border-color .15s,box-shadow .15s
+}
+.search:focus-within{border-color:var(--d-pastoral);box-shadow:0 0 0 3px rgba(14,138,138,.12)}
+.search input{border:0;outline:0;font-size:.9rem;width:100%;background:transparent;color:var(--ink)}
+.search svg{flex:none;color:var(--ink-soft)}
+.search .clr{cursor:pointer;color:var(--ink-soft);flex:none;display:none;border:0;background:none;padding:2px}
+.search .clr.show{display:inline-flex}
+.count-badge{font-size:.82rem;color:var(--ink-soft);white-space:nowrap;flex:none}
+.count-badge b{color:var(--summit);font-family:'Spectral',serif;font-size:1.05rem;font-weight:700}
+
+/* filter bar: segmented controls + month */
+.filterbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;background:#E7EEED;border-radius:10px;padding:3px;gap:2px}
+.seg button{
+  font-family:inherit;border:0;background:transparent;padding:7px 13px;border-radius:8px;
+  font-size:.82rem;color:var(--ink-soft);cursor:pointer;font-weight:500;white-space:nowrap;
+  transition:all .12s ease
+}
+.seg button:hover:not(.on){color:var(--summit)}
+.seg button.on{background:#fff;color:var(--summit);box-shadow:0 1px 3px rgba(14,42,49,.14);font-weight:600}
+
+/* month filter chips */
+.month-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.mchip{
+  font-family:inherit;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);
+  transition:all .12s ease;user-select:none;white-space:nowrap
+}
+.mchip:hover:not(.on){border-color:var(--summit);color:var(--summit)}
+.mchip.on{background:var(--summit);color:#fff;border-color:var(--summit)}
+@media(max-width:640px){
+  .month-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .month-row::-webkit-scrollbar{display:none}
+  .mchip{flex:none}
+}
+
+/* dimensions header */
+.filt-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 9px}
+.filt-head .lbl{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.filt-head .acts{display:flex;gap:16px}
+.linkbtn{background:none;border:0;font-family:inherit;font-size:.78rem;font-weight:600;
+  color:var(--d-pastoral);cursor:pointer;padding:0}
+.linkbtn:hover{text-decoration:underline}
+.linkbtn:disabled{color:var(--line);cursor:default;text-decoration:none}
+
+/* dimension chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  font-size:.82rem;font-weight:600;padding:7px 13px 7px 10px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:7px;transition:all .13s ease;user-select:none
+}
+.chip:hover{border-color:var(--dc)}
+.chip .swatch{width:10px;height:10px;border-radius:50%;flex:none}
+.chip .check{width:13px;height:13px;flex:none;display:none;color:var(--dc)}
+.chip.active .swatch{display:none}
+.chip.active .check{display:inline-flex}
+.chip.active{color:var(--ink);border-color:var(--dc);background:var(--dc-tint)}
+.chip .ct{font-size:.72rem;font-weight:700;color:var(--ink-soft);
+  background:rgba(0,0,0,.05);border-radius:999px;padding:1px 7px;min-width:20px;text-align:center}
+.chip.active .ct{color:var(--dc);background:#fff}
+.chip.zero{opacity:.38}
+@media(max-width:640px){
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .searchrow{flex-wrap:wrap}
+  .count-badge{order:3;width:100%}
+}
+
+/* ---------- TIMELINE ---------- */
+.timeline{padding:24px 0 60px;position:relative}
+.month-group{margin-bottom:30px}
+.month-h{
+  font-family:'Spectral',serif;font-size:1.5rem;font-weight:600;color:var(--summit);
+  display:flex;align-items:baseline;gap:12px;margin:10px 0 16px;
+  padding-bottom:8px;border-bottom:1px solid var(--line)
+}
+.month-h .yr{font-size:.8rem;color:var(--ink-soft);font-weight:400;letter-spacing:.1em}
+.rail{position:relative;padding-left:34px}
+.rail::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--line),var(--line))}
+.ev{position:relative;margin-bottom:12px}
+.ev::before{content:"";position:absolute;left:-30px;top:16px;width:14px;height:14px;border-radius:50%;
+  background:var(--card);border:3px solid var(--dc,var(--d-todos));z-index:2}
+.ev.cumple::before{width:10px;height:10px;left:-28px;top:14px;border-width:2px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:13px;
+  padding:14px 16px;cursor:pointer;transition:box-shadow .15s ease,border-color .15s;
+  border-left:4px solid var(--d-todos)
+}
+.card:hover{box-shadow:0 6px 20px -12px rgba(14,42,49,.4)}
+.ev-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.date-box{text-align:center;flex:none;min-width:46px}
+.date-box .d{font-family:'Spectral',serif;font-size:1.5rem;font-weight:700;line-height:1;color:var(--summit)}
+.date-box .wd{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);margin-top:2px}
+.ev-main{flex:1;min-width:0}
+.ev-name{font-family:'Spectral',serif;font-size:1.08rem;font-weight:600;line-height:1.25}
+.ev-sub{font-size:.8rem;color:var(--ink-soft);margin-top:3px;display:flex;gap:12px;flex-wrap:wrap}
+.ev-sub b{color:var(--ink);font-weight:600}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;align-items:center}
+.badge{font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+.badge.dim{color:#fff}
+.badge.pri{background:#FBECEC;color:#B23A3A}
+.badge.pri.media{background:#FBF3E4;color:#9A6A16}
+.badge.tag{background:#EEF3F2;color:var(--ink-soft)}
+.chev{margin-left:auto;color:var(--ink-soft);transition:transform .2s;flex:none}
+.card.open .chev{transform:rotate(180deg)}
+.details{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.card.open .details{max-height:400px}
+.details-in{padding:14px 2px 4px;border-top:1px dashed var(--line);margin-top:12px}
+.details-in h4{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dawn-deep);margin-bottom:4px}
+.details-in p{font-size:.88rem;color:var(--ink-soft);margin-bottom:10px}
+.gcal{
+  display:inline-flex;align-items:center;gap:7px;font-size:.8rem;font-weight:600;
+  color:var(--summit);text-decoration:none;border:1px solid var(--line);
+  padding:7px 12px;border-radius:9px;background:var(--mist)
+}
+.gcal:hover{border-color:var(--dawn);color:var(--dawn-deep)}
+.today-marker{display:flex;align-items:center;gap:10px;margin:4px 0 16px;padding-left:0}
+.today-marker .pin{background:var(--dawn);color:#3a2a06;font-size:.7rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+.today-marker .ln{flex:1;height:2px;background:linear-gradient(90deg,var(--dawn),transparent)}
+.empty{text-align:center;padding:50px 20px;color:var(--ink-soft)}
+.empty svg{opacity:.4;margin-bottom:10px}
+
+footer{background:var(--summit);color:#9FBAB6;text-align:center;padding:26px 20px;font-size:.82rem}
+footer .lema{font-family:'Spectral',serif;font-style:italic;color:var(--dawn);font-size:1rem;margin-bottom:6px}
+
+@media(max-width:640px){
+  .brand-txt h1{font-size:1.5rem}
+  .countdown{margin-left:0;text-align:left;width:100%;margin-top:8px}
+  .month-h{font-size:1.25rem}
+  .date-box{min-width:40px}
+}
+@media print{
+  .controls,.upcoming,.chev,.gcal,.range,.countdown{display:none}
+  .details{max-height:none!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 64 64" fill="none">
+        <path d="M4 54 L24 18 L34 36 L42 22 L60 54 Z" fill="#3E8B8B" opacity=".55"/>
+        <path d="M4 54 L26 14 L44 46 L54 30 L60 54 Z" fill="#E0A340" opacity=".9"/>
+        <rect x="30" y="6" width="4" height="16" fill="#fff"/>
+        <rect x="25" y="11" width="14" height="4" fill="#fff"/>
+      </svg>
+      <div class="brand-txt">
+        <div class="eyebrow">¡Vive tu Ascenso!</div>
+        <h1>Fraternidad MonteCristo</h1>
+        <div class="sub">Calendario 2026 · Año de la Fraternidad</div>
+      </div>
+    </div>
+    <div class="next-banner">
+      <div>
+        <div class="label">Siguiente en la senda</div>
+        <div class="next-title" id="nextTitle">—</div>
+        <div class="next-meta" id="nextMeta"></div>
+      </div>
+      <div class="countdown">
+        <div class="num" id="cdNum">—</div>
+        <div class="cap" id="cdCap">días</div>
+      </div>
+    </div>
+  </div>
+  <svg class="range" viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path d="M0 70 L180 26 L320 58 L520 14 L700 54 L900 22 L1080 60 L1260 30 L1440 66 L1440 70 Z" fill="#0B2228"/>
+  </svg>
+</header>
+
+<div class="wrap">
+  <section class="upcoming">
+    <div class="section-h">Próximos eventos</div>
+    <div class="up-scroll" id="upcoming"></div>
+  </section>
+</div>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="searchrow">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="search" placeholder="Buscar actividad…" autocomplete="off">
+        <button class="clr" id="clrSearch" aria-label="Limpiar búsqueda"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="count-badge"><b id="countNum">0</b> <span id="countWord">actividades</span></div>
+    </div>
+    <div class="filt-head">
+      <span class="lbl">Mes</span>
+    </div>
+    <div class="month-row" id="monthRow"></div>
+    <div class="filterbar">
+      <div class="seg" id="priSeg">
+        <button data-pri="all" class="on">Toda prioridad</button>
+        <button data-pri="Alta">Alta</button>
+        <button data-pri="Media">Media</button>
+      </div>
+    </div>
+    <div class="filt-head">
+      <span class="lbl">Dimensiones</span>
+      <div class="acts">
+        <button class="linkbtn" id="allDims">Seleccionar todas</button>
+        <button class="linkbtn" id="clearDims">Limpiar</button>
+      </div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<footer>
+  <div class="lema">¡Todo a Jesús por María, todo a María para Jesús!</div>
+  Fraternidad MonteCristo · 2026, Año de la Fraternidad
+</footer>
+
+<script>
+/* ---------- DIMENSIONS ---------- */
+const DIMS = {
+  todos:      {name:"Toda la Fraternidad", color:"var(--d-todos)"},
+  pastoral:   {name:"Intelectual / Pastoral", color:"var(--d-pastoral)"},
+  espiritual: {name:"Espiritual", color:"var(--d-espiritual)"},
+  humana:     {name:"Humana", color:"var(--d-humana)"},
+  economia:   {name:"Economía", color:"var(--d-economia)"},
+  decanatal:  {name:"Decanatal / EDEPAJ", color:"var(--d-decanatal)"},
+  parroquial: {name:"Parroquial", color:"var(--d-parroquial)"},
+  cumple:     {name:"Cumpleaños", color:"var(--d-cumple)"},
+};
+const DIM_HEX = {todos:"#2C5C8A",pastoral:"#0E8A8A",espiritual:"#7A5AA8",humana:"#D9713C",economia:"#2E8B57",decanatal:"#6B7B86",parroquial:"#B08432",cumple:"#C25B87"};
+
+/* ---------- EVENTS ---------- */
+/* mine: roles de Diego -> eco (Economía), redes (Redes Sociales), past (Pastoral) */
+const EV = [
+ {d:"2026-01-04",t:"17:00",n:"Día de Reyes · escenificación",dim:"humana",tag:"Liturgia",pri:"Media",note:"D.H. prepara la escenificación del Día de Reyes.",resp:"Apoyar la escenificación; todos participamos."},
+ {d:"2026-01-10",t:"19:00",n:"OPENING 2026 · inicia con Misa",dim:"todos",tag:"Evento Mayor",pri:"Alta",mine:["redes"],note:"Arranque oficial del año de la Fraternidad.",resp:"Documentar y publicar el inicio del año en redes."},
+ {d:"2026-01-12",t:"19:00",n:"Programación Retiro de Hombres",dim:"todos",tag:"Planeación",pri:"Media",note:"Yaír Santos coordina la programación del retiro.",resp:"Apoyo general en la planeación."},
+ {d:"2026-01-22",t:"18:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-01-23",t:"17:30",n:"Formación agentes de Pastoral",dim:"pastoral",tag:"Formación",pri:"Alta",mine:["past"],note:"Formación con el P. Alberto.",resp:"Asistir, tomar apuntes y compartir con la dimensión."},
+ {d:"2026-01-24",t:"",n:"Ruta en la Parroquia San Patricio",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Actividad EDEPAJ.",resp:"Participación como Fraternidad."},
+ {d:"2026-01-11",t:"",n:"Cumpleaños Karla Novelo",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-01-26",t:"",n:"Cumpleaños Jesús Garduza",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-01-28",t:"",n:"Cumpleaños Marina Quiam",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-01-30",t:"",n:"Cumpleaños Tía Yoli",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-02-02",t:"18:00",n:"Día de la Candelaria",dim:"todos",tag:"Liturgia",pri:"Media",note:"Sacar y meter sillas.",resp:"Apoyo logístico; todos participamos."},
+ {d:"2026-02-09",t:"19:00",n:"23° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto de la Fraternidad.",resp:"Preparar tema/dinámica, convocar y dirigir la reunión."},
+ {d:"2026-02-12",t:"18:00",n:"Preparar cubeta de Jóvenes para la Misa",dim:"todos",tag:"Liturgia",pri:"Media",note:"Tenerla lista antes de las 7 pm.",resp:"Apoyo en decoración."},
+ {d:"2026-02-14",t:"19:00",n:"Cena del Amor y la Amistad",dim:"todos",tag:"Evento Mayor",pri:"Alta",mine:["redes"],note:"Todos apoyamos.",resp:"Apoyar el evento y documentar en redes."},
+ {d:"2026-02-15",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-02-18",t:"19:00",n:"Miércoles de Ceniza",dim:"todos",tag:"Liturgia",pri:"Alta",note:"Inicio de la Cuaresma.",resp:"Participación de toda la Fraternidad."},
+ {d:"2026-02-20",t:"18:00",n:"Rezo del Vía Crucis (Apostolado)",dim:"espiritual",tag:"Liturgia",pri:"Media",note:"D.E. organiza.",resp:"Todos participamos."},
+ {d:"2026-02-21",t:"15:00",n:"Retiro de Cuaresma parroquial",dim:"todos",tag:"Retiro",pri:"Alta",note:"Todos asistimos.",resp:"Asistir al retiro."},
+ {d:"2026-02-05",t:"",n:"Cumpleaños Rodrigo Dzib",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-02-08",t:"",n:"Cumpleaños Zacil Oyosa",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-02-11",t:"",n:"Cumpleaños Tía Neydi",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-03-14",t:"18:00",n:"Marcha Penitencial Decanatal",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Actividad EDEPAJ.",resp:"Participación como Fraternidad."},
+ {d:"2026-03-13",t:"",n:"Retiro Mixto · Ascenso Sagrado Corazón",dim:"todos",tag:"Retiro",pri:"Alta",note:"Retiro del 13 al 16 de marzo.",resp:"Asistir al retiro."},
+ {d:"2026-03-23",t:"",n:"Núcleo de Bienvenida Sagrado Corazón",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Bienvenida a nuevos integrantes.",resp:"Organizar dinámica de integración y presentar a los nuevos."},
+ {d:"2026-03-29",t:"08:00",n:"Domingo de Ramos",dim:"todos",tag:"Semana Santa",pri:"Alta",mine:["redes"],note:"Decorar camioneta, sonido y dirigir rosario.",resp:"Todos apoyamos; documentar en redes."},
+ {d:"2026-03-11",t:"",n:"Cumpleaños Ángel Camacho",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-03-16",t:"",n:"Cumpleaños Tío Beto",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-03-21",t:"",n:"Cumpleaños Adri Guillén",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-03-01",t:"",n:"Cumpleaños Juseph",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-04-01",t:"18:00",n:"Preparar monumento al Santísimo",dim:"espiritual",tag:"Semana Santa",pri:"Alta",note:"Selena queda de responsable.",resp:"Apoyo en preparación del monumento."},
+ {d:"2026-04-02",t:"01:00",n:"Adoración al Santísimo · tapar imágenes",dim:"espiritual",tag:"Semana Santa",pri:"Alta",note:"D.E. organiza.",resp:"Participar en la adoración."},
+ {d:"2026-04-03",t:"12:00",n:"Vía Crucis · hidratar y baya",dim:"todos",tag:"Semana Santa",pri:"Alta",note:"Dar de beber a los actores del Vía Crucis.",resp:"Todos participamos."},
+ {d:"2026-04-04",t:"06:00",n:"Dirigir el Vía Matriz",dim:"todos",tag:"Semana Santa",pri:"Alta",note:"Con Emaús.",resp:"Apoyo en el Vía Matriz."},
+ {d:"2026-04-05",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-04-13",t:"19:00",n:"24° Núcleo Mixto · Fiesta Núcleos",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Celebración especial de núcleos.",resp:"Coordinar la dinámica y la fiesta de núcleos."},
+ {d:"2026-04-25",t:"19:00",n:"Concurso Embajador(a)",dim:"todos",tag:"Evento Mayor",pri:"Media",mine:["redes"],note:"Karito.",resp:"Documentar en redes."},
+ {d:"2026-04-27",t:"19:00",n:"Colocar banderines fiestas patronales",dim:"humana",tag:"Fiesta Patronal",pri:"Media",note:"Dimensión Humana coordina.",resp:"Todos ayudamos."},
+ {d:"2026-04-30",t:"19:00",n:"Bajada de la imagen N.S.F. · inicia Fiesta Patronal",dim:"parroquial",tag:"Fiesta Patronal",pri:"Alta",note:"Inicio de la fiesta patronal.",resp:"Participación de la Fraternidad."},
+ {d:"2026-04-25",t:"",n:"Cumpleaños Selena Gordillo",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-05-01",t:"17:15",n:"Gremio MonteCristo · Procesión",dim:"todos",tag:"Fiesta Patronal",pri:"Media",note:"Av. 115 con calle 20.",resp:"Participar en la procesión."},
+ {d:"2026-05-03",t:"19:00",n:"Organización Festival Juvenil",dim:"pastoral",tag:"Evento Mayor",pri:"Alta",mine:["past","redes"],note:"MonteCristo organiza.",resp:"Coordinar programa, presentaciones y logística."},
+ {d:"2026-05-04",t:"19:00",n:"25° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-05-08",t:"18:00",n:"Dirigimos el Rosario en la Parroquia",dim:"espiritual",tag:"Liturgia",pri:"Media",note:"D. Espiritual dirige.",resp:"Apoyo en el rezo."},
+ {d:"2026-05-10",t:"19:00",n:"Festival para Mamás",dim:"todos",tag:"Evento Mayor",pri:"Alta",mine:["redes"],note:"Todos participamos.",resp:"Apoyar el festival y documentar en redes."},
+ {d:"2026-05-13",t:"10:00",n:"Decoración carro triunfal · Vaquería",dim:"todos",tag:"Fiesta Patronal",pri:"Alta",mine:["redes"],note:"Fiesta patronal parroquial. Todos con trajes típicos.",resp:"Decorar el carro por la mañana; documentar en redes."},
+ {d:"2026-05-15",t:"17:30",n:"Tema agentes de pastoral",dim:"pastoral",tag:"Formación",pri:"Alta",mine:["past"],note:"Con P. Alberto Valdéz.",resp:"Asistir y compartir con la dimensión."},
+ {d:"2026-05-23",t:"",n:"Vigilia de Pentecostés Decanatal",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Actividad EDEPAJ.",resp:"Participación como Fraternidad."},
+ {d:"2026-05-24",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-05-31",t:"08:00",n:"Gran Célula 2026",dim:"todos",tag:"Evento Mayor",pri:"Alta",mine:["redes"],note:"Todo el día (8am–7pm). Lugar por confirmar.",resp:"Participar y documentar en redes."},
+ {d:"2026-05-12",t:"",n:"Cumpleaños Vanessa Puc",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-05-31",t:"",n:"Cumpleaños Renato Acevedo",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-06-04",t:"17:30",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-06-08",t:"19:00",n:"26° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-06-20",t:"",n:"Convivencia Juvenil Decanatal",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Actividad EDEPAJ.",resp:"Participación como Fraternidad."},
+ {d:"2026-06-22",t:"19:00",n:"Aniversario Sacerdotal P. Alberto",dim:"todos",tag:"Celebración",pri:"Alta",note:"Preparar un detalle.",resp:"Preparar detalle para el Padre."},
+ {d:"2026-06-26",t:"17:30",n:"Tema agentes de pastoral",dim:"pastoral",tag:"Formación",pri:"Alta",mine:["past"],note:"Con P. Alberto Valdéz.",resp:"Asistir y compartir con la dimensión."},
+
+ {d:"2026-07-06",t:"19:00",n:"27° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-07-09",t:"17:30",n:"MONTE-FEST 2026 · recaudación",dim:"pastoral",tag:"Evento Mayor",pri:"Alta",mine:["past","eco","redes"],note:"Actividad de recaudación para Ascensos. D.I./Pastoral organiza menú y venta con Ecónomos.",resp:"Organizar el menú y atender la venta; documentar en redes."},
+ {d:"2026-07-12",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-07-18",t:"19:00",n:"Visita del Nuevo Obispo",dim:"todos",tag:"Celebración",pri:"Alta",mine:["redes"],note:"Por definir.",resp:"Participar y documentar en redes."},
+ {d:"2026-07-23",t:"19:00",n:"Misa de acción de gracias",dim:"todos",tag:"Liturgia",pri:"Alta",note:"Todos uniformados.",resp:"Asistir uniformados."},
+ {d:"2026-07-27",t:"19:00",n:"Núcleo de Bienvenida VHCSA",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Bienvenida VHCSA.",resp:"Organizar dinámica y presentar nuevos miembros."},
+ {d:"2026-07-05",t:"",n:"Cumpleaños Alexis Carranza",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-07-20",t:"",n:"Cumpleaños Yassuri Torres",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-07-20",t:"",n:"Cumpleaños Zahi K Reskala",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-08-03",t:"19:00",n:"Núcleo de Bienvenida VMCSA",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Bienvenida VMCSA.",resp:"Organizar dinámica y presentar nuevos miembros."},
+ {d:"2026-08-13",t:"17:30",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-08-29",t:"16:30",n:"Retiro de Initium",dim:"todos",tag:"Retiro",pri:"Media",note:"Termina con Misa a las 7 pm.",resp:"Apoyo y asistencia."},
+ {d:"2026-08-30",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-08-07",t:"",n:"Cumpleaños Josafat Quiñonez",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-08-29",t:"",n:"Cumpleaños Andrés Dzib",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-08-29",t:"",n:"Cumpleaños Miguel Martínez",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-09-01",t:"19:00",n:"28° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-09-06",t:"08:00",n:"Feria Apostólica · poner el stand",dim:"todos",tag:"Evento Mayor",pri:"Alta",mine:["redes"],note:"Stand de MonteCristo.",resp:"Montar el stand y documentar en redes."},
+ {d:"2026-09-12",t:"18:00",n:"Noche Mexicana",dim:"humana",tag:"Convivencia",pri:"Media",note:"Presentar número, juegos de mesa, donar guiso.",resp:"D.H. lidera; todos aportamos."},
+ {d:"2026-09-17",t:"17:30",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-09-18",t:"17:30",n:"Tema agentes de pastoral",dim:"pastoral",tag:"Formación",pri:"Alta",mine:["past"],note:"Con P. Alberto Valdéz.",resp:"Asistir y compartir con la dimensión."},
+ {d:"2026-09-23",t:"20:00",n:"Inician ensayos de Pastorela 2026",dim:"todos",tag:"Pastorela",pri:"Media",note:"“En busca del Niño Jesús, Parte 2”. Todos conservan sus personajes.",resp:"Asistir a los ensayos."},
+ {d:"2026-09-07",t:"",n:"Cumpleaños Pame Rosel",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-09-08",t:"",n:"Cumpleaños Jud Basto",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-09-17",t:"",n:"Cumpleaños Tía Ileana Dzib",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-09-26",t:"",n:"Cumpleaños Carlos Eduardo Mukul",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-10-05",t:"19:00",n:"Cumpleaños P. Alberto · preparar regalo",dim:"pastoral",tag:"Pastoral",pri:"Alta",mine:["past"],note:"D. Pastoral prepara el regalo.",resp:"Coordinar y presentar el regalo del Padre."},
+ {d:"2026-10-12",t:"19:00",n:"29° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-10-13",t:"18:00",n:"Triduo a Madre Teresa de Jesús",dim:"espiritual",tag:"Liturgia",pri:"Media",note:"Del 13 al 15; Misa solemne el 15.",resp:"Participar en el triduo."},
+ {d:"2026-10-15",t:"",n:"Fiesta Patronal Santa Teresa · Hora Santa",dim:"pastoral",tag:"Fiesta Patronal",pri:"Alta",mine:["past"],note:"D. Pastoral dirige la Hora Santa.",resp:"Pedir a Vane el esquema especial; preparar y dirigir la Hora Santa."},
+ {d:"2026-10-18",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-10-22",t:"17:30",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-10-23",t:"17:30",n:"Tema agentes de pastoral",dim:"pastoral",tag:"Formación",pri:"Alta",mine:["past"],note:"Con P. Alberto Valdéz.",resp:"Asistir y compartir con la dimensión."},
+ {d:"2026-10-31",t:"17:00",n:"Visita al Hospital",dim:"pastoral",tag:"Pastoral",pri:"Alta",mine:["past"],note:"D. Pastoral prepara lo necesario.",resp:"Coordinar qué llevar y animar a los enfermos."},
+ {d:"2026-10-16",t:"",n:"Cumpleaños Sara Alvarado",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-10-22",t:"",n:"Cumpleaños Tío Remi García",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-10-23",t:"",n:"Cumpleaños Palmira Rosel",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-11-01",t:"19:00",n:"Holywins en la Parroquia",dim:"todos",tag:"Evento Mayor",pri:"Media",mine:["redes"],note:"Vestirse todos de santos.",resp:"Participar y documentar en redes."},
+ {d:"2026-11-02",t:"19:00",n:"Fieles Difuntos",dim:"humana",tag:"Liturgia",pri:"Media",note:"D. Humana prepara algún número.",resp:"Apoyo de la Fraternidad."},
+ {d:"2026-11-09",t:"19:00",n:"30° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Núcleo mixto.",resp:"Preparar tema/dinámica, convocar y dirigir."},
+ {d:"2026-11-21",t:"",n:"VI Aniversario de la Diócesis",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Aniversario diocesano.",resp:"Participación como Fraternidad."},
+ {d:"2026-11-23",t:"",n:"1er Aniversario Apostolado + decoración Guadalupe",dim:"pastoral",tag:"Celebración",pri:"Alta",mine:["past"],note:"1er aniversario del nombramiento como Apostolado. Inicio de decoración a N.S. de Guadalupe (D. Pastoral).",resp:"Coordinar decoración de Guadalupe; actividad por confirmar."},
+ {d:"2026-11-26",t:"17:30",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-11-16",t:"",n:"Cumpleaños Yaír Santos",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-11-20",t:"",n:"Cumpleaños Mey Cervantes",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-11-29",t:"",n:"Cumpleaños Dayana Santos",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+
+ {d:"2026-12-05",t:"16:30",n:"Ruta Guadalupana",dim:"decanatal",tag:"Decanatal",pri:"Media",note:"Actividad EDEPAJ.",resp:"Participación como Fraternidad."},
+ {d:"2026-12-06",t:"07:00",n:"Venta Parroquial",dim:"economia",tag:"Venta",pri:"Alta",mine:["eco"],note:"Venta a cargo de los Ecónomos.",resp:"Co-organizar la venta como Auxiliar de Economía."},
+ {d:"2026-12-07",t:"19:00",n:"31° Núcleo Mixto",dim:"pastoral",tag:"Núcleo",pri:"Alta",mine:["past"],note:"Último núcleo del año.",resp:"Preparar cierre de año, convocar y dirigir."},
+ {d:"2026-12-11",t:"18:00",n:"Novena a N.S. de Guadalupe + repartición de comida",dim:"pastoral",tag:"Liturgia",pri:"Alta",mine:["past"],note:"D. Espiritual lidera; este día nos toca apoyar la repartición de comida.",resp:"Coordinar logística de la repartición de comida."},
+ {d:"2026-12-17",t:"20:00",n:"Presentación de la Pastorela",dim:"todos",tag:"Pastorela",pri:"Alta",mine:["redes"],note:"Pastorela 2026.",resp:"Participar y documentar en redes."},
+ {d:"2026-12-18",t:"18:00",n:"Posada en la Parroquia de MXto",dim:"espiritual",tag:"Posada",pri:"Media",note:"Organiza D. Espiritual.",resp:"Apoyo en la posada."},
+ {d:"2026-12-19",t:"19:00",n:"Posada Parroquial",dim:"parroquial",tag:"Posada",pri:"Media",note:"Posada de la parroquia.",resp:"Participar."},
+ {d:"2026-12-20",t:"20:00",n:"Posada MonteCristiana",dim:"todos",tag:"Posada",pri:"Alta",mine:["redes"],note:"Posada de la Fraternidad.",resp:"Participar y documentar en redes."},
+ {d:"2026-12-24",t:"20:00",n:"Hora Santa",dim:"humana",tag:"Liturgia",pri:"Media",note:"Dirige D. Humana.",resp:"Apoyo en la Hora Santa."},
+ {d:"2026-12-26",t:"19:00",n:"Concierto de Navidad",dim:"todos",tag:"Evento Mayor",pri:"Media",mine:["redes"],note:"Concierto navideño.",resp:"Participar y documentar en redes."},
+ {d:"2026-12-31",t:"20:00",n:"Hora Santa de Perdón",dim:"espiritual",tag:"Liturgia",pri:"Media",note:"Dirige D. Espiritual.",resp:"Cierre de año en oración."},
+ {d:"2026-12-01",t:"",n:"Cumpleaños Angélica Guillén",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+ {d:"2026-12-09",t:"",n:"Cumpleaños Diego Chan",dim:"cumple",tag:"Cumpleaños",pri:"—"},
+];
+
+/* ---------- STATE ---------- */
+const MONTHS=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const WD=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+let activeDims=new Set(Object.keys(DIMS));
+let monthFilter="all", query="", priFilter="all";
+const today=new Date(); today.setHours(0,0,0,0);
+
+EV.forEach(e=>{const p=e.d.split("-");e._dt=new Date(+p[0],+p[1]-1,+p[2]); e._m=+p[1]-1;});
+EV.sort((a,b)=> a._dt-b._dt || (a.t||"").localeCompare(b.t||""));
+
+/* ---------- BUILD CONTROLS ---------- */
+const monthRow=document.getElementById("monthRow");
+const monthBtns=[];
+function addMonthBtn(label,val){
+  const b=document.createElement("button");
+  b.className="mchip"+(val==="all"?" on":""); b.textContent=label; b.dataset.month=val;
+  b.onclick=()=>{
+    monthFilter=val;
+    monthBtns.forEach(x=>x.classList.toggle("on",x===b));
+    render();
+  };
+  monthRow.appendChild(b); monthBtns.push(b);
+}
+addMonthBtn("Todo el año","all");
+MONTHS.forEach((m,i)=>addMonthBtn(m.slice(0,3),i));
+
+const chipsEl=document.getElementById("chips");
+const chipEls={};
+Object.entries(DIMS).forEach(([k,v])=>{
+  const c=document.createElement("div");
+  c.className="chip"; c.dataset.dim=k; c.tabIndex=0; c.setAttribute("role","button");
+  c.style.setProperty("--dc",DIM_HEX[k]);
+  c.style.setProperty("--dc-tint",DIM_HEX[k]+"1E");
+  c.innerHTML=`<span class="swatch" style="background:${DIM_HEX[k]}"></span>`+
+    `<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>`+
+    `${v.name}<span class="ct"></span>`;
+  const toggle=()=>{ activeDims.has(k)?activeDims.delete(k):activeDims.add(k); render(); };
+  c.onclick=toggle;
+  c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();toggle();}};
+  chipEls[k]=c;
+  chipsEl.appendChild(c);
+});
+
+// Segmented: prioridad
+document.getElementById("priSeg").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{
+    priFilter = b.dataset.pri;
+    document.querySelectorAll("#priSeg button").forEach(x=>x.classList.toggle("on",x===b));
+    render();
+  };
+});
+
+// Search + clear
+const searchInput=document.getElementById("search"), clrBtn=document.getElementById("clrSearch");
+searchInput.oninput=e=>{query=e.target.value.toLowerCase();clrBtn.classList.toggle("show",!!e.target.value);render();};
+clrBtn.onclick=()=>{searchInput.value="";query="";clrBtn.classList.remove("show");render();searchInput.focus();};
+
+// Todas / Limpiar
+document.getElementById("allDims").onclick=()=>{activeDims=new Set(Object.keys(DIMS));render();};
+document.getElementById("clearDims").onclick=()=>{activeDims.clear();render();};
+
+/* refresh chip visual state + live counts (counts respect the OTHER active filters) */
+function refreshChips(){
+  const allOn=activeDims.size===Object.keys(DIMS).length;
+  document.getElementById("allDims").disabled=allOn;
+  document.getElementById("clearDims").disabled=activeDims.size===0;
+  Object.keys(DIMS).forEach(k=>{
+    const c=chipEls[k];
+    c.classList.toggle("active",activeDims.has(k));
+    const n=EV.filter(e=>e.dim===k && matchesExceptDim(e)).length;
+    c.querySelector(".ct").textContent=n;
+    c.classList.toggle("zero",n===0);
+  });
+}
+
+/* ---------- HELPERS ---------- */
+function gcalLink(e){
+  const dt=e._dt; const y=dt.getFullYear(),mo=String(dt.getMonth()+1).padStart(2,'0'),da=String(dt.getDate()).padStart(2,'0');
+  let start,end;
+  if(e.t){const[h,mi]=e.t.split(":");start=`${y}${mo}${da}T${h}${mi}00`;
+    const ed=new Date(dt);ed.setHours(+h+1,+mi);end=`${y}${mo}${da}T${String(ed.getHours()).padStart(2,'0')}${mi}00`;}
+  else{start=`${y}${mo}${da}`;const nd=new Date(dt);nd.setDate(nd.getDate()+1);end=`${nd.getFullYear()}${String(nd.getMonth()+1).padStart(2,'0')}${String(nd.getDate()).padStart(2,'0')}`;}
+  const txt=encodeURIComponent(e.n),det=encodeURIComponent((e.note||"")+(e.resp?"\n\nResponsabilidades: "+e.resp:""));
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${txt}&dates=${start}/${end}&details=${det}`;
+}
+function matchesExceptDim(e){
+  if(monthFilter!=="all"&&e._m!=+monthFilter)return false;
+  if(priFilter!=="all"&&e.pri!==priFilter)return false;
+  if(query&&!e.n.toLowerCase().includes(query))return false;
+  return true;
+}
+function matches(e){ return activeDims.has(e.dim) && matchesExceptDim(e); }
+
+/* ---------- UPCOMING + COUNTDOWN ---------- */
+function refreshUpcoming(){
+  const up=EV.filter(e=>e._dt>=today && e.dim!=="cumple").slice(0,4);
+  const box=document.getElementById("upcoming");
+  box.innerHTML= up.length? "" : '<div style="color:var(--ink-soft);font-size:.9rem">No hay más eventos programados este año.</div>';
+  up.forEach(e=>{
+    const days=Math.round((e._dt-today)/864e5);
+    const inTxt= days===0?"Hoy":days===1?"Mañana":`En ${days} días`;
+    const card=document.createElement("div");card.className="up-card";
+    card.innerHTML=`<div class="accent" style="background:${DIM_HEX[e.dim]}"></div>
+      <div class="up-when">${WD[e._dt.getDay()]} ${e._dt.getDate()} ${MONTHS[e._m].slice(0,3)}${e.t?" · "+e.t:""}</div>
+      <div class="up-name">${e.n}</div>
+      ${e.note?`<div class="up-detail">${e.note}</div>`:""}
+      <div class="up-foot">
+        <span class="up-dim" style="background:${DIM_HEX[e.dim]}">${DIMS[e.dim].name}</span>
+        <span class="up-in">${inTxt}</span>
+      </div>`;
+    box.appendChild(card);
+  });
+  // countdown to very next event
+  const nx=EV.find(e=>e._dt>=today && e.dim!=="cumple");
+  if(nx){
+    document.getElementById("nextTitle").textContent=nx.n;
+    document.getElementById("nextMeta").textContent=`${WD[nx._dt.getDay()]} ${nx._dt.getDate()} de ${MONTHS[nx._m]}${nx.t?" · "+nx.t:""}`;
+    const days=Math.round((nx._dt-today)/864e5);
+    document.getElementById("cdNum").textContent= days===0?"¡Hoy!":days;
+    document.getElementById("cdCap").textContent= days===0?"":days===1?"día":"días";
+  }
+}
+
+/* ---------- RENDER TIMELINE ---------- */
+function render(){
+  refreshChips();
+  const tl=document.getElementById("timeline");
+  const list=EV.filter(matches);
+  document.getElementById("countNum").textContent=list.length;
+  document.getElementById("countWord").textContent=list.length===1?"actividad":"actividades";
+  if(!list.length){
+    tl.innerHTML=`<div class="empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><div>Ninguna actividad coincide con estos filtros.</div><br><button class="linkbtn" style="font-size:.85rem" onclick="resetFilters()">Restablecer filtros</button></div>`;
+    return;
+  }
+  let html="", curM=-1, todayPlaced=false;
+  list.forEach(e=>{
+    if(e._m!==curM){
+      if(curM!==-1)html+="</div></div>";
+      curM=e._m;
+      html+=`<div class="month-group"><div class="month-h">${MONTHS[curM]}<span class="yr">2026</span></div><div class="rail">`;
+    }
+    // insert HOY marker before first future event within the month flow
+    if(!todayPlaced && e._dt>=today){
+      todayPlaced=true;
+      html+=`<div class="today-marker"><span class="pin">Hoy · ${today.getDate()} ${MONTHS[today.getMonth()].slice(0,3)}</span><span class="ln"></span></div>`;
+    }
+    const isCumple=e.dim==="cumple";
+    const hasDetails=!isCumple && (e.note||e.resp);
+    html+=`<div class="ev ${isCumple?'cumple':''}" style="--dc:${DIM_HEX[e.dim]}">
+      <div class="card ${hasDetails?'':'nodet'}" style="border-left-color:${DIM_HEX[e.dim]}" ${hasDetails?'onclick="this.classList.toggle(\'open\')"':''}>
+        <div class="ev-top">
+          <div class="date-box"><div class="d">${e._dt.getDate()}</div><div class="wd">${WD[e._dt.getDay()]}</div></div>
+          <div class="ev-main">
+            <div class="ev-name">${e.n}</div>
+            <div class="ev-sub">${e.t?`<span>🕐 ${e.t}</span>`:""}</div>
+            <div class="badges">
+              <span class="badge dim" style="background:${DIM_HEX[e.dim]}">${DIMS[e.dim].name}</span>
+              ${e.tag&&!isCumple?`<span class="badge tag">${e.tag}</span>`:""}
+              ${e.pri==="Alta"?'<span class="badge pri">Prioridad Alta</span>':e.pri==="Media"?'<span class="badge pri media">Prioridad Media</span>':""}
+            </div>
+          </div>
+          ${hasDetails?'<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>':""}
+        </div>
+        ${hasDetails?`<div class="details"><div class="details-in">
+          ${e.note?`<h4>Objetivo</h4><p>${e.note}</p>`:""}
+          ${e.resp?`<h4>Responsabilidades</h4><p>${e.resp}</p>`:""}
+          <a class="gcal" href="${gcalLink(e)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+            Agregar a Google Calendar</a>
+        </div></div>`:""}
+      </div>
+    </div>`;
+  });
+  html+="</div></div>";
+  tl.innerHTML=html;
+}
+
+function resetFilters(){
+  activeDims=new Set(Object.keys(DIMS));
+  monthFilter="all"; priFilter="all"; query="";
+  searchInput.value=""; clrBtn.classList.remove("show");
+  monthBtns.forEach(x=>x.classList.toggle("on",x.dataset.month==="all"));
+  document.querySelectorAll("#priSeg button").forEach(x=>x.classList.toggle("on",x.dataset.pri==="all"));
+  render();
+}
+
+refreshUpcoming();
+render();
+setInterval(refreshUpcoming,60000);
+</script>
+</body>
+</html>
