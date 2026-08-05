@@ -172,6 +172,70 @@ header{
   .count-badge{order:3;width:100%}
 }
 
+/* ---------- QUICK ROW (view toggle + Hoy/Semana/Mes) ---------- */
+.quickrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.seg button svg{margin-right:-1px}
+.quick{display:inline-flex;gap:6px}
+.quick button{
+  font-family:inherit;font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:8px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);transition:all .12s ease;white-space:nowrap
+}
+.quick button:hover:not(.on){border-color:var(--dawn-deep);color:var(--dawn-deep)}
+.quick button.on{background:var(--dawn);color:#3a2a06;border-color:var(--dawn)}
+
+/* ---------- GRID (calendar view) ---------- */
+.gridwrap{padding:20px 0 60px}
+.grid-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:16px}
+.grid-nav button{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+  color:var(--summit);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  transition:all .12s ease
+}
+.grid-nav button:hover{border-color:var(--summit);background:var(--summit);color:#fff}
+.grid-title{font-family:'Spectral',serif;font-size:1.5rem;font-weight:600;color:var(--summit);min-width:200px;text-align:center}
+.grid-head{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px}
+.grid-head div{text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:4px 0}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cell{
+  min-height:96px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px;
+  display:flex;flex-direction:column;gap:3px;overflow:hidden;transition:border-color .12s
+}
+.cell.empty{background:transparent;border-color:transparent}
+.cell.has:hover{border-color:var(--dawn);cursor:pointer}
+.cell.today{border-color:var(--dawn);box-shadow:inset 0 0 0 1px var(--dawn)}
+.cell .cnum{font-size:.82rem;font-weight:700;color:var(--ink-soft);align-self:flex-end;line-height:1}
+.cell.today .cnum{background:var(--dawn);color:#3a2a06;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+.cell.past{opacity:.6}
+.cell.sel{border-color:var(--summit);box-shadow:inset 0 0 0 1px var(--summit)}
+.day-panel .card{margin-bottom:10px}
+.day-panel .ev{margin-bottom:0}
+.pill{font-size:.66rem;font-weight:600;color:#fff;border-radius:5px;padding:2px 5px;line-height:1.25;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.more{font-size:.64rem;font-weight:700;color:var(--ink-soft);padding-left:2px}
+
+/* day detail panel (grid) */
+.day-panel{margin-top:20px}
+.day-panel:empty{display:none}
+.day-panel h3{font-family:'Spectral',serif;font-size:1.15rem;color:var(--summit);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px}
+.day-panel h3::before{content:"";width:20px;height:2px;background:var(--dawn)}
+
+@media(max-width:640px){
+  .quickrow{gap:8px}
+  .quick{flex:1;justify-content:space-between}
+  .quick button{flex:1;padding:8px 6px;font-size:.76rem;text-align:center}
+  .grid-title{font-size:1.2rem;min-width:150px}
+  .grid,.grid-head{gap:3px}
+  .grid-head div{font-size:.6rem}
+  .cell{min-height:60px;padding:4px;border-radius:7px}
+  .cell .cnum{font-size:.72rem}
+  .cell.today .cnum{width:18px;height:18px}
+  .pill{display:none}
+  .dots{display:flex;gap:2px;flex-wrap:wrap;margin-top:auto}
+  .dot-ev{width:6px;height:6px;border-radius:50%}
+}
+.dots{display:none}
+
 /* ---------- TIMELINE ---------- */
 .timeline{padding:24px 0 60px;position:relative}
 .month-group{margin-bottom:30px}
@@ -232,13 +296,31 @@ footer{background:var(--summit);color:#9FBAB6;text-align:center;padding:26px 20p
 footer .lema{font-family:'Spectral',serif;font-style:italic;color:var(--dawn);font-size:1rem;margin-bottom:6px}
 
 @media(max-width:640px){
-  .brand-txt h1{font-size:1.5rem}
-  .countdown{margin-left:0;text-align:left;width:100%;margin-top:8px}
+  .wrap{padding:0 14px}
+  header{padding-top:26px}
+  .brand{gap:12px}
+  .mark{width:42px;height:42px}
+  .brand-txt h1{font-size:1.35rem}
+  .brand-txt .eyebrow{font-size:.65rem;letter-spacing:.2em}
+  .next-banner{margin-top:18px;padding:14px 0 20px}
+  .countdown{margin-left:0;text-align:left;width:100%;margin-top:10px;
+    display:flex;align-items:baseline;gap:8px}
+  .countdown .num{font-size:1.6rem}
+  .upcoming{padding:20px 0 4px}
+  .up-scroll{display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;
+    padding-bottom:8px;scrollbar-width:none}
+  .up-scroll::-webkit-scrollbar{display:none}
+  .up-card{flex:0 0 78%;scroll-snap-align:start}
+  .controls{padding:12px 0 10px}
   .month-h{font-size:1.25rem}
-  .date-box{min-width:40px}
+  .date-box{min-width:38px}
+  .date-box .d{font-size:1.3rem}
+  .ev-name{font-size:1rem}
+  .card{padding:12px 13px}
+  .section-h{font-size:1.05rem}
 }
 @media print{
-  .controls,.upcoming,.chev,.gcal,.range,.countdown{display:none}
+  .controls,.upcoming,.chev,.gcal,.range,.countdown,.quickrow,.grid-nav{display:none}
   .details{max-height:none!important}
   body{background:#fff}
 }
@@ -294,10 +376,23 @@ footer .lema{font-family:'Spectral',serif;font-style:italic;color:var(--dawn);fo
       </div>
       <div class="count-badge"><b id="countNum">0</b> <span id="countWord">actividades</span></div>
     </div>
-    <div class="filt-head">
-      <span class="lbl">Mes</span>
+    <div class="quickrow">
+      <div class="seg" id="viewSeg">
+        <button data-view="list" class="on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Lista</button>
+        <button data-view="grid"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Calendario</button>
+      </div>
+      <div class="quick" id="quickRange">
+        <button data-range="today">Hoy</button>
+        <button data-range="week">Esta semana</button>
+        <button data-range="month">Este mes</button>
+      </div>
     </div>
-    <div class="month-row" id="monthRow"></div>
+    <div id="monthSection">
+      <div class="filt-head">
+        <span class="lbl">Mes</span>
+      </div>
+      <div class="month-row" id="monthRow"></div>
+    </div>
     <div class="filterbar">
       <div class="seg" id="priSeg">
         <button data-pri="all" class="on">Toda prioridad</button>
@@ -318,6 +413,16 @@ footer .lema{font-family:'Spectral',serif;font-style:italic;color:var(--dawn);fo
 
 <div class="wrap">
   <div class="timeline" id="timeline"></div>
+  <div class="gridwrap" id="gridWrap" style="display:none">
+    <div class="grid-nav">
+      <button id="gPrev" aria-label="Mes anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="grid-title" id="gTitle"></div>
+      <button id="gNext" aria-label="Mes siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="grid-head" id="gHead"></div>
+    <div class="grid" id="gBody"></div>
+    <div class="day-panel" id="dayPanel"></div>
+  </div>
 </div>
 
 <footer>
@@ -473,9 +578,17 @@ const EV = [
 /* ---------- STATE ---------- */
 const MONTHS=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 const WD=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+const WD_GRID=["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
 let activeDims=new Set(Object.keys(DIMS));
 let monthFilter="all", query="", priFilter="all";
+let viewMode="list", rangeFilter="all", selectedDay=null;
 const today=new Date(); today.setHours(0,0,0,0);
+// week bounds (Monday–Sunday) containing today
+const weekStart=new Date(today); weekStart.setDate(today.getDate()-((today.getDay()+6)%7));
+const weekEnd=new Date(weekStart); weekEnd.setDate(weekStart.getDate()+6);
+// grid starts on the month of today if it's in 2026, else January
+let gridMonth = today.getFullYear()===2026 ? today.getMonth() : 0;
+const sameDay=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
 
 EV.forEach(e=>{const p=e.d.split("-");e._dt=new Date(+p[0],+p[1]-1,+p[2]); e._m=+p[1]-1;});
 EV.sort((a,b)=> a._dt-b._dt || (a.t||"").localeCompare(b.t||""));
@@ -489,6 +602,8 @@ function addMonthBtn(label,val){
   b.onclick=()=>{
     monthFilter=val;
     monthBtns.forEach(x=>x.classList.toggle("on",x===b));
+    // month chip and quick-range are mutually exclusive
+    rangeFilter="all"; quickBtns.forEach(x=>x.classList.remove("on"));
     render();
   };
   monthRow.appendChild(b); monthBtns.push(b);
@@ -521,6 +636,42 @@ document.getElementById("priSeg").querySelectorAll("button").forEach(b=>{
     render();
   };
 });
+
+// View toggle (Lista / Calendario)
+document.getElementById("viewSeg").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{
+    viewMode=b.dataset.view;
+    document.querySelectorAll("#viewSeg button").forEach(x=>x.classList.toggle("on",x===b));
+    document.getElementById("timeline").style.display = viewMode==="list"?"":"none";
+    document.getElementById("gridWrap").style.display = viewMode==="grid"?"":"none";
+    document.getElementById("monthSection").style.display = viewMode==="grid"?"none":"";
+    render();
+  };
+});
+
+// Quick range (Hoy / Esta semana / Este mes) — always operate on the list
+const quickBtns=[...document.querySelectorAll("#quickRange button")];
+quickBtns.forEach(b=>{
+  b.onclick=()=>{
+    const r=b.dataset.range;
+    if(rangeFilter===r){ rangeFilter="all"; b.classList.remove("on"); }
+    else{ rangeFilter=r; quickBtns.forEach(x=>x.classList.toggle("on",x===b)); }
+    // clear month chip; switch to list so the range reads clearly
+    monthFilter="all"; monthBtns.forEach(x=>x.classList.toggle("on",x.dataset.month==="all"));
+    if(viewMode!=="list"){
+      viewMode="list";
+      document.querySelectorAll("#viewSeg button").forEach(x=>x.classList.toggle("on",x.dataset.view==="list"));
+      document.getElementById("timeline").style.display="";
+      document.getElementById("gridWrap").style.display="none";
+      document.getElementById("monthSection").style.display="";
+    }
+    render();
+  };
+});
+
+// Grid month navigation
+document.getElementById("gPrev").onclick=()=>{ if(gridMonth>0){gridMonth--;selectedDay=null;render();} };
+document.getElementById("gNext").onclick=()=>{ if(gridMonth<11){gridMonth++;selectedDay=null;render();} };
 
 // Search + clear
 const searchInput=document.getElementById("search"), clrBtn=document.getElementById("clrSearch");
@@ -558,6 +709,9 @@ function gcalLink(e){
 function matchesExceptDim(e){
   if(monthFilter!=="all"&&e._m!=+monthFilter)return false;
   if(priFilter!=="all"&&e.pri!==priFilter)return false;
+  if(rangeFilter==="today"&&!sameDay(e._dt,today))return false;
+  if(rangeFilter==="week"&&!(e._dt>=weekStart&&e._dt<=weekEnd))return false;
+  if(rangeFilter==="month"&&!(e._dt.getMonth()===today.getMonth()&&e._dt.getFullYear()===today.getFullYear()))return false;
   if(query&&!e.n.toLowerCase().includes(query))return false;
   return true;
 }
@@ -593,13 +747,54 @@ function refreshUpcoming(){
   }
 }
 
-/* ---------- RENDER TIMELINE ---------- */
+/* ---------- CARD MARKUP (shared) ---------- */
+function cardInner(e){
+  const isCumple=e.dim==="cumple";
+  const hasDetails=!isCumple && (e.note||e.resp);
+  return `<div class="card ${hasDetails?'':'nodet'}" style="border-left-color:${DIM_HEX[e.dim]}" ${hasDetails?'onclick="this.classList.toggle(\'open\')"':''}>
+    <div class="ev-top">
+      <div class="date-box"><div class="d">${e._dt.getDate()}</div><div class="wd">${WD[e._dt.getDay()]}</div></div>
+      <div class="ev-main">
+        <div class="ev-name">${e.n}</div>
+        <div class="ev-sub">${e.t?`<span>🕐 ${e.t}</span>`:""}</div>
+        <div class="badges">
+          <span class="badge dim" style="background:${DIM_HEX[e.dim]}">${DIMS[e.dim].name}</span>
+          ${e.tag&&!isCumple?`<span class="badge tag">${e.tag}</span>`:""}
+          ${e.pri==="Alta"?'<span class="badge pri">Prioridad Alta</span>':e.pri==="Media"?'<span class="badge pri media">Prioridad Media</span>':""}
+        </div>
+      </div>
+      ${hasDetails?'<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>':""}
+    </div>
+    ${hasDetails?`<div class="details"><div class="details-in">
+      ${e.note?`<h4>Objetivo</h4><p>${e.note}</p>`:""}
+      ${e.resp?`<h4>Responsabilidades</h4><p>${e.resp}</p>`:""}
+      <a class="gcal" href="${gcalLink(e)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+        Agregar a Google Calendar</a>
+    </div></div>`:""}
+  </div>`;
+}
+
+/* ---------- RENDER (dispatcher) ---------- */
+function setCount(n){
+  document.getElementById("countNum").textContent=n;
+  document.getElementById("countWord").textContent=n===1?"actividad":"actividades";
+}
 function render(){
   refreshChips();
-  const tl=document.getElementById("timeline");
   const list=EV.filter(matches);
-  document.getElementById("countNum").textContent=list.length;
-  document.getElementById("countWord").textContent=list.length===1?"actividad":"actividades";
+  if(viewMode==="grid"){
+    setCount(list.filter(e=>e._m===gridMonth).length);
+    renderGrid(list);
+  }else{
+    setCount(list.length);
+    renderList(list);
+  }
+}
+
+/* ---------- LIST (timeline) ---------- */
+function renderList(list){
+  const tl=document.getElementById("timeline");
   if(!list.length){
     tl.innerHTML=`<div class="empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><div>Ninguna actividad coincide con estos filtros.</div><br><button class="linkbtn" style="font-size:.85rem" onclick="resetFilters()">Restablecer filtros</button></div>`;
     return;
@@ -611,47 +806,63 @@ function render(){
       curM=e._m;
       html+=`<div class="month-group"><div class="month-h">${MONTHS[curM]}<span class="yr">2026</span></div><div class="rail">`;
     }
-    // insert HOY marker before first future event within the month flow
     if(!todayPlaced && e._dt>=today){
       todayPlaced=true;
       html+=`<div class="today-marker"><span class="pin">Hoy · ${today.getDate()} ${MONTHS[today.getMonth()].slice(0,3)}</span><span class="ln"></span></div>`;
     }
     const isCumple=e.dim==="cumple";
-    const hasDetails=!isCumple && (e.note||e.resp);
-    html+=`<div class="ev ${isCumple?'cumple':''}" style="--dc:${DIM_HEX[e.dim]}">
-      <div class="card ${hasDetails?'':'nodet'}" style="border-left-color:${DIM_HEX[e.dim]}" ${hasDetails?'onclick="this.classList.toggle(\'open\')"':''}>
-        <div class="ev-top">
-          <div class="date-box"><div class="d">${e._dt.getDate()}</div><div class="wd">${WD[e._dt.getDay()]}</div></div>
-          <div class="ev-main">
-            <div class="ev-name">${e.n}</div>
-            <div class="ev-sub">${e.t?`<span>🕐 ${e.t}</span>`:""}</div>
-            <div class="badges">
-              <span class="badge dim" style="background:${DIM_HEX[e.dim]}">${DIMS[e.dim].name}</span>
-              ${e.tag&&!isCumple?`<span class="badge tag">${e.tag}</span>`:""}
-              ${e.pri==="Alta"?'<span class="badge pri">Prioridad Alta</span>':e.pri==="Media"?'<span class="badge pri media">Prioridad Media</span>':""}
-            </div>
-          </div>
-          ${hasDetails?'<svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>':""}
-        </div>
-        ${hasDetails?`<div class="details"><div class="details-in">
-          ${e.note?`<h4>Objetivo</h4><p>${e.note}</p>`:""}
-          ${e.resp?`<h4>Responsabilidades</h4><p>${e.resp}</p>`:""}
-          <a class="gcal" href="${gcalLink(e)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
-            Agregar a Google Calendar</a>
-        </div></div>`:""}
-      </div>
-    </div>`;
+    html+=`<div class="ev ${isCumple?'cumple':''}" style="--dc:${DIM_HEX[e.dim]}">${cardInner(e)}</div>`;
   });
   html+="</div></div>";
   tl.innerHTML=html;
 }
 
+/* ---------- GRID (calendar) ---------- */
+function renderGrid(list){
+  const y=2026, m=gridMonth;
+  document.getElementById("gTitle").textContent=`${MONTHS[m]} 2026`;
+  document.getElementById("gPrev").disabled=(m===0);
+  document.getElementById("gNext").disabled=(m===11);
+  document.getElementById("gHead").innerHTML=WD_GRID.map(d=>`<div>${d}</div>`).join("");
+  const byDay={};
+  list.filter(e=>e._m===m).forEach(e=>{(byDay[e._dt.getDate()]=byDay[e._dt.getDate()]||[]).push(e);});
+  const lead=(new Date(y,m,1).getDay()+6)%7;      // Monday-start offset
+  const daysIn=new Date(y,m+1,0).getDate();
+  let cells="";
+  for(let i=0;i<lead;i++) cells+=`<div class="cell empty"></div>`;
+  for(let d=1;d<=daysIn;d++){
+    const evs=byDay[d]||[];
+    const cd=new Date(y,m,d);
+    const isToday=sameDay(cd,today), isPast=cd<today&&!isToday;
+    const pills=evs.slice(0,3).map(e=>`<span class="pill" style="background:${DIM_HEX[e.dim]}" title="${e.n.replace(/"/g,'&quot;')}">${e.n}</span>`).join("");
+    const dots=evs.slice(0,5).map(e=>`<span class="dot-ev" style="background:${DIM_HEX[e.dim]}"></span>`).join("");
+    const more=evs.length>3?`<span class="more">+${evs.length-3} más</span>`:"";
+    cells+=`<div class="cell ${evs.length?'has':''} ${isToday?'today':''} ${isPast?'past':''} ${selectedDay===d?'sel':''}" ${evs.length?`data-day="${d}"`:''}>
+      <span class="cnum">${d}</span>${pills}${more}<span class="dots">${dots}</span>
+    </div>`;
+  }
+  document.getElementById("gBody").innerHTML=cells;
+  document.querySelectorAll('#gBody .cell.has').forEach(c=>{
+    c.onclick=()=>{ selectedDay=+c.dataset.day; render(); };
+  });
+  renderDayPanel(list);
+}
+function renderDayPanel(list){
+  const panel=document.getElementById("dayPanel");
+  if(selectedDay==null){panel.innerHTML="";return;}
+  const evs=list.filter(e=>e._m===gridMonth && e._dt.getDate()===selectedDay);
+  if(!evs.length){panel.innerHTML="";return;}
+  const dt=new Date(2026,gridMonth,selectedDay);
+  panel.innerHTML=`<h3>${WD[dt.getDay()]} ${selectedDay} de ${MONTHS[gridMonth]}</h3>`+
+    evs.map(e=>`<div class="ev" style="--dc:${DIM_HEX[e.dim]}">${cardInner(e)}</div>`).join("");
+}
+
 function resetFilters(){
   activeDims=new Set(Object.keys(DIMS));
-  monthFilter="all"; priFilter="all"; query="";
+  monthFilter="all"; priFilter="all"; query=""; rangeFilter="all";
   searchInput.value=""; clrBtn.classList.remove("show");
   monthBtns.forEach(x=>x.classList.toggle("on",x.dataset.month==="all"));
+  quickBtns.forEach(x=>x.classList.remove("on"));
   document.querySelectorAll("#priSeg button").forEach(x=>x.classList.toggle("on",x.dataset.pri==="all"));
   render();
 }
