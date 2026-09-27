@@ -2,8 +2,16 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Calendario MonteCristo 2026 · ¡Vive tu Ascenso!</title>
+<meta name="theme-color" content="#0E2A31">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MonteCristo">
+<link rel="manifest" id="manifestLink" href="">
+<link rel="apple-touch-icon" id="appleIcon" href="">
+<link rel="icon" id="favicon" href="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +50,7 @@ header{
   background:
     radial-gradient(120% 90% at 80% -10%, rgba(224,163,64,.22), transparent 55%),
     linear-gradient(160deg,var(--summit),var(--slate));
-  color:#EAF2F0;padding:40px 0 0;position:relative;overflow:hidden;
+  color:#EAF2F0;padding:calc(40px + env(safe-area-inset-top,0px)) 0 0;position:relative;overflow:hidden;
 }
 .brand{display:flex;align-items:center;gap:16px;position:relative;z-index:2}
 .mark{width:52px;height:52px;flex:none}
@@ -94,36 +102,100 @@ header{
 .up-dim{font-size:.66rem;font-weight:700;color:#fff;padding:3px 8px;border-radius:999px;letter-spacing:.02em}
 .up-in{font-size:.74rem;color:var(--dawn-deep);font-weight:700;white-space:nowrap}
 
-/* ---------- CONTROLS ---------- */
-.controls{position:sticky;top:0;z-index:20;
-  background:rgba(243,246,245,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  padding:14px 0 12px;border-bottom:1px solid var(--line)}
-.searchrow{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+/* ---------- CONTROLS (toolbar compacto, mobile-first) ---------- */
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:rgba(243,246,245,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:10px 0;border-bottom:1px solid var(--line)}
+.toolbar{display:flex;gap:8px;align-items:center}
 .search{
   flex:1;min-width:0;display:flex;align-items:center;gap:8px;
-  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 13px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;
   transition:border-color .15s,box-shadow .15s
 }
 .search:focus-within{border-color:var(--d-pastoral);box-shadow:0 0 0 3px rgba(14,138,138,.12)}
-.search input{border:0;outline:0;font-size:.9rem;width:100%;background:transparent;color:var(--ink)}
+.search input{border:0;outline:0;font-size:.88rem;width:100%;background:transparent;color:var(--ink);min-width:0}
 .search svg{flex:none;color:var(--ink-soft)}
 .search .clr{cursor:pointer;color:var(--ink-soft);flex:none;display:none;border:0;background:none;padding:2px}
 .search .clr.show{display:inline-flex}
-.count-badge{font-size:.82rem;color:var(--ink-soft);white-space:nowrap;flex:none}
-.count-badge b{color:var(--summit);font-family:'Spectral',serif;font-size:1.05rem;font-weight:700}
+
+.ftbtn{
+  position:relative;flex:none;font-family:inherit;font-size:.84rem;font-weight:600;
+  background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;
+  padding:9px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  transition:border-color .12s,background .12s
+}
+.ftbtn:hover{border-color:var(--summit)}
+.ftbtn.active{background:var(--summit);color:#fff;border-color:var(--summit)}
+.fbadge{
+  background:var(--dawn);color:#3a2a06;font-size:.68rem;font-weight:800;line-height:1;
+  border-radius:999px;padding:3px 6px;min-width:16px;text-align:center
+}
+.ftbtn.active .fbadge{background:#fff;color:var(--summit)}
+
+.viewseg-toolbar{flex:none}
+.viewseg-toolbar button{display:inline-flex;align-items:center;gap:6px}
+
+.quick{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;margin-top:9px;scrollbar-width:none;padding-bottom:2px}
+.quick::-webkit-scrollbar{display:none}
+.quick button{
+  font-family:inherit;font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:8px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);transition:all .12s ease;
+  white-space:nowrap;flex:none
+}
+.quick button:hover:not(.on){border-color:var(--dawn-deep);color:var(--dawn-deep)}
+.quick button.on{background:var(--dawn);color:#3a2a06;border-color:var(--dawn)}
+
+.statusrow{display:flex;align-items:center;gap:12px;margin-top:9px;font-size:.78rem}
+.count-badge{color:var(--ink-soft);white-space:nowrap;flex:none}
+.count-badge b{color:var(--summit);font-family:'Spectral',serif;font-size:1rem;font-weight:700}
 .sync-badge{font-size:.74rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;white-space:nowrap;flex:none}
 .sync-badge svg{flex:none}
 .sync-badge.spin svg{animation:spin 1s linear infinite}
 .sync-badge.err{color:#B23A3A}
 @keyframes spin{to{transform:rotate(360deg)}}
-.addbtn{
-  font-family:inherit;font-size:.82rem;font-weight:700;background:var(--summit);color:#fff;
-  border:0;border-radius:10px;padding:9px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
-  white-space:nowrap;flex:none;transition:background .12s
-}
-.addbtn:hover{background:var(--slate)}
 
-/* ---------- MODAL ---------- */
+/* Botón flotante "Agregar" — reachable con el pulgar en móvil */
+.fab{
+  position:fixed; right:20px; bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  width:56px; height:56px; border-radius:50%; z-index:40;
+  background:var(--dawn); color:#3a2a06; border:0; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 28px -8px rgba(224,163,64,.55), 0 2px 8px rgba(0,0,0,.18);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.fab:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 14px 32px -8px rgba(224,163,64,.65), 0 3px 10px rgba(0,0,0,.2)}
+.fab:active{transform:scale(.94)}
+
+@media(max-width:640px){
+  .ftbtn span:not(.fbadge){display:none}
+  .ftbtn{padding:9px 10px}
+  .viewseg-toolbar button span{display:none}
+  .viewseg-toolbar button{padding:9px 11px}
+  .viewseg-toolbar button svg{margin:0}
+  .statusrow{flex-wrap:wrap;row-gap:4px}
+  .fab{right:16px; width:52px; height:52px}
+}
+
+/* ---------- FILTER PANEL (bottom sheet en móvil, panel en escritorio) ---------- */
+.fp-modal{max-width:420px;padding:20px 20px 0;display:flex;flex-direction:column;max-height:85vh}
+.fp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex:none}
+.fp-top h2{font-family:'Spectral',serif;font-size:1.2rem;color:var(--summit)}
+.fp-close{background:var(--mist);border:0;border-radius:8px;padding:6px;cursor:pointer;color:var(--ink-soft);
+  display:inline-flex;align-items:center;justify-content:center}
+.fp-close:hover{color:var(--summit)}
+.fp-body-scroll{overflow-y:auto;flex:1;margin:0 -20px;padding:0 20px}
+.fp-section{margin-bottom:20px}
+.fp-section .lbl{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:700;margin-bottom:9px}
+.fp-footer{
+  display:flex;gap:10px;padding:14px 0;border-top:1px solid var(--line);
+  position:sticky;bottom:0;background:var(--card);flex:none;margin-top:auto
+}
+@media(max-width:640px){
+  .fp-modal{max-height:80vh}
+}
+
+/* ---------- MODAL (Agregar al calendario) ---------- */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(14,42,49,.55);backdrop-filter:blur(2px);
   display:none;align-items:flex-start;justify-content:center;z-index:100;padding:24px 16px;overflow-y:auto
@@ -184,13 +256,11 @@ header{
 }
 .pin-verified button:hover{color:var(--summit)}
 @media(max-width:640px){
-  .addbtn span{display:none}
   .modal-overlay{padding:0;align-items:flex-end}
   .modal{border-radius:16px 16px 0 0;max-width:none;max-height:90vh;overflow-y:auto}
 }
 
 /* filter bar: segmented controls + month */
-.filterbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .seg{display:inline-flex;background:#E7EEED;border-radius:10px;padding:3px;gap:2px}
 .seg button{
   font-family:inherit;border:0;background:transparent;padding:7px 13px;border-radius:8px;
@@ -201,7 +271,7 @@ header{
 .seg button.on{background:#fff;color:var(--summit);box-shadow:0 1px 3px rgba(14,42,49,.14);font-weight:600}
 
 /* month filter chips */
-.month-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.month-row{display:flex;gap:6px;flex-wrap:wrap}
 .mchip{
   font-family:inherit;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;
   border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);
@@ -209,15 +279,10 @@ header{
 }
 .mchip:hover:not(.on){border-color:var(--summit);color:var(--summit)}
 .mchip.on{background:var(--summit);color:#fff;border-color:var(--summit)}
-@media(max-width:640px){
-  .month-row{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-  .month-row::-webkit-scrollbar{display:none}
-  .mchip{flex:none}
-}
 
 /* dimensions header */
 .filt-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 9px}
-.filt-head .lbl{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+.filt-head .lbl{margin-bottom:0}
 .filt-head .acts{display:flex;gap:16px}
 .linkbtn{background:none;border:0;font-family:inherit;font-size:.78rem;font-weight:600;
   color:var(--d-pastoral);cursor:pointer;padding:0}
@@ -241,24 +306,6 @@ header{
   background:rgba(0,0,0,.05);border-radius:999px;padding:1px 7px;min-width:20px;text-align:center}
 .chip.active .ct{color:var(--dc);background:#fff}
 .chip.zero{opacity:.38}
-@media(max-width:640px){
-  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-  .chips::-webkit-scrollbar{display:none}
-  .chip{flex:none}
-  .searchrow{flex-wrap:wrap}
-  .count-badge{order:3;width:100%}
-}
-
-/* ---------- QUICK ROW (view toggle + Hoy/Semana/Mes) ---------- */
-.quickrow{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
-.seg button svg{margin-right:-1px}
-.quick{display:inline-flex;gap:6px}
-.quick button{
-  font-family:inherit;font-size:.8rem;font-weight:600;padding:7px 13px;border-radius:8px;cursor:pointer;
-  border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);transition:all .12s ease;white-space:nowrap
-}
-.quick button:hover:not(.on){border-color:var(--dawn-deep);color:var(--dawn-deep)}
-.quick button.on{background:var(--dawn);color:#3a2a06;border-color:var(--dawn)}
 
 /* ---------- GRID (calendar view) ---------- */
 .gridwrap{padding:20px 0 60px}
@@ -445,51 +492,78 @@ footer .lema{font-family:'Spectral',serif;font-style:italic;color:var(--dawn);fo
 
 <div class="controls">
   <div class="wrap">
-    <div class="searchrow">
+    <div class="toolbar">
       <div class="search">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="text" id="search" placeholder="Buscar actividad…" autocomplete="off">
         <button class="clr" id="clrSearch" aria-label="Limpiar búsqueda"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
+      <button class="ftbtn" id="filterToggleBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+        <span>Filtros</span>
+        <span class="fbadge" id="filterBadge" style="display:none">0</span>
+      </button>
+      <div class="seg viewseg-toolbar" id="viewSeg">
+        <button data-view="list" class="on" aria-label="Vista de lista"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Lista</span></button>
+        <button data-view="grid" aria-label="Vista de calendario"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Calendario</span></button>
+      </div>
+    </div>
+    <div class="quick" id="quickRange">
+      <button data-range="today">Hoy</button>
+      <button data-range="week">Esta semana</button>
+      <button data-range="month">Este mes</button>
+    </div>
+    <div class="statusrow">
       <div class="count-badge"><b id="countNum">0</b> <span id="countWord">actividades</span></div>
       <div class="sync-badge" id="syncBadge" style="display:none"></div>
-      <button class="addbtn" id="openAddBtn" style="display:none">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
-        Agregar
+    </div>
+  </div>
+</div>
+
+<button class="fab" id="openAddBtn" style="display:none" aria-label="Agregar al calendario">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+</button>
+
+<div class="modal-overlay" id="filterOverlay">
+  <div class="modal fp-modal">
+    <div class="fp-top">
+      <h2>Filtros</h2>
+      <button class="fp-close" id="filterCloseBtn" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="quickrow">
-      <div class="seg" id="viewSeg">
-        <button data-view="list" class="on"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Lista</button>
-        <button data-view="grid"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Calendario</button>
-      </div>
-      <div class="quick" id="quickRange">
-        <button data-range="today">Hoy</button>
-        <button data-range="week">Esta semana</button>
-        <button data-range="month">Este mes</button>
-      </div>
-    </div>
-    <div id="monthSection">
-      <div class="filt-head">
-        <span class="lbl">Mes</span>
-      </div>
+
+    <div class="fp-body-scroll">
+    <div class="fp-section" id="monthSection">
+      <span class="lbl">Mes</span>
       <div class="month-row" id="monthRow"></div>
     </div>
-    <div class="filterbar">
+
+    <div class="fp-section">
+      <span class="lbl">Prioridad</span>
       <div class="seg" id="priSeg">
         <button data-pri="all" class="on">Toda prioridad</button>
         <button data-pri="Alta">Alta</button>
         <button data-pri="Media">Media</button>
       </div>
     </div>
-    <div class="filt-head">
-      <span class="lbl">Dimensiones</span>
-      <div class="acts">
-        <button class="linkbtn" id="allDims">Seleccionar todas</button>
-        <button class="linkbtn" id="clearDims">Limpiar</button>
+
+    <div class="fp-section">
+      <div class="filt-head">
+        <span class="lbl">Dimensiones</span>
+        <div class="acts">
+          <button class="linkbtn" id="allDims">Seleccionar todas</button>
+          <button class="linkbtn" id="clearDims">Limpiar</button>
+        </div>
       </div>
+      <div class="chips" id="chips"></div>
     </div>
-    <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="fp-footer">
+      <button class="btn-ghost" id="fpReset">Restablecer</button>
+      <button class="btn-primary" id="fpApply">Ver <span id="fpCount">0</span> resultados</button>
+    </div>
   </div>
 </div>
 
@@ -939,6 +1013,7 @@ function setCount(n){
 }
 function render(){
   refreshChips();
+  updateFilterBadge();
   const list=EV.filter(matches);
   if(viewMode==="grid"){
     setCount(list.filter(e=>e._m===gridMonth).length);
@@ -1064,6 +1139,36 @@ if(API_URL){
   setInterval(()=>syncFromSheet(true), 5*60000); // re-sincroniza cada 5 min
 }
 
+/* ---------- PANEL DE FILTROS (bottom sheet en móvil) ---------- */
+const filterOverlay=document.getElementById("filterOverlay");
+const filterToggleBtn=document.getElementById("filterToggleBtn");
+const filterBadge=document.getElementById("filterBadge");
+
+function activeFilterCount(){
+  let n=0;
+  if(rangeFilter!=="all") n++;
+  if(monthFilter!=="all") n++;
+  if(priFilter!=="all") n++;
+  if(activeDims.size!==Object.keys(DIMS).length) n++;
+  if(query) n++;
+  return n;
+}
+function updateFilterBadge(){
+  const n=activeFilterCount();
+  filterBadge.style.display = n>0 ? "inline-flex" : "none";
+  filterBadge.textContent = n;
+  filterToggleBtn.classList.toggle("active", n>0);
+  const fpCount=document.getElementById("fpCount");
+  if(fpCount) fpCount.textContent = EV.filter(matches).length;
+}
+function openFilterPanel(){ filterOverlay.classList.add("show"); }
+function closeFilterPanel(){ filterOverlay.classList.remove("show"); }
+filterToggleBtn.onclick=openFilterPanel;
+document.getElementById("filterCloseBtn").onclick=closeFilterPanel;
+document.getElementById("fpApply").onclick=closeFilterPanel;
+document.getElementById("fpReset").onclick=()=>{ resetFilters(); closeFilterPanel(); };
+filterOverlay.onclick=e=>{ if(e.target===filterOverlay) closeFilterPanel(); };
+
 /* ---------- MODAL "+ Agregar" ---------- */
 const overlay=document.getElementById("modalOverlay");
 const formA=document.getElementById("formActividad"), formC=document.getElementById("formCumple");
@@ -1166,6 +1271,37 @@ modalSave.onclick=async ()=>{
     modalSave.disabled=false; modalSave.textContent="Guardar";
   }
 };
+
+/* ---------- PWA: ícono + manifest generados en el momento (sin archivos externos) ---------- */
+function generateIcon_(size){
+  const c=document.createElement("canvas"); c.width=size; c.height=size;
+  const ctx=c.getContext("2d");
+  ctx.fillStyle="#0E2A31"; ctx.fillRect(0,0,size,size);
+  const s=size/64;
+  ctx.fillStyle="rgba(62,139,139,0.55)";
+  ctx.beginPath(); ctx.moveTo(4*s,54*s); ctx.lineTo(24*s,18*s); ctx.lineTo(34*s,36*s); ctx.lineTo(42*s,22*s); ctx.lineTo(60*s,54*s); ctx.closePath(); ctx.fill();
+  ctx.fillStyle="#E0A340";
+  ctx.beginPath(); ctx.moveTo(4*s,54*s); ctx.lineTo(26*s,14*s); ctx.lineTo(44*s,46*s); ctx.lineTo(54*s,30*s); ctx.lineTo(60*s,54*s); ctx.closePath(); ctx.fill();
+  ctx.fillStyle="#fff";
+  ctx.fillRect(30*s,6*s,4*s,16*s);
+  ctx.fillRect(25*s,11*s,14*s,4*s);
+  return c.toDataURL("image/png");
+}
+try{
+  const icon192=generateIcon_(192), icon512=generateIcon_(512);
+  document.getElementById("appleIcon").href=icon192;
+  document.getElementById("favicon").href=icon192;
+  const manifest={
+    name:"Calendario MonteCristo 2026",
+    short_name:"MonteCristo",
+    description:"Calendario de actividades de la Fraternidad Juvenil MonteCristo — Año de la Fraternidad 2026.",
+    start_url:".", scope:".", display:"standalone",
+    background_color:"#0E2A31", theme_color:"#0E2A31",
+    icons:[{src:icon192,sizes:"192x192",type:"image/png"},{src:icon512,sizes:"512x512",type:"image/png"}]
+  };
+  const blob=new Blob([JSON.stringify(manifest)],{type:"application/json"});
+  document.getElementById("manifestLink").href=URL.createObjectURL(blob);
+}catch(e){ console.warn("PWA manifest no disponible:", e); }
 
 refreshUpcoming();
 render();
